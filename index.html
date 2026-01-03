@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Scoreboard Controller</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+        background: #f0f0f0;
+      }
+      .control-panel {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+      button {
+        font-size: 18px;
+        padding: 5px 15px;
+        cursor: pointer;
+      }
+      input {
+        font-size: 18px;
+        width: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2><a href="/view/">スコアボード</a></h2>
+
+    <div class="control-panel">
+      <input type="text" id="p1_name_input" placeholder="Player 1 Name" />
+      <button onclick="saveName('p1')">名前更新</button>
+      <br /><br />
+      Score: <span id="p1_score_val">0</span>
+      <button onclick="changeScore('p1', 1)">+1</button>
+      <button onclick="changeScore('p1', -1)">-1</button>
+    </div>
+
+    <div class="control-panel">
+      <input type="text" id="p2_name_input" placeholder="Player 2 Name" />
+      <button onclick="saveName('p2')">名前更新</button>
+      <br /><br />
+      Score: <span id="p2_score_val">0</span>
+      <button onclick="changeScore('p2', 1)">+1</button>
+      <button onclick="changeScore('p2', -1)">-1</button>
+    </div>
+
+    <button onclick="localStorage.clear(); location.reload();">
+      全リセット
+    </button>
+
+    <script>
+      function saveName(player) {
+        const name = document.getElementById(`${player}_name_input`).value;
+        localStorage.setItem(`${player}_name`, name);
+      }
+
+      function changeScore(player, delta) {
+        let current = parseInt(localStorage.getItem(`${player}_score`) || '0');
+        let next = current + delta;
+        localStorage.setItem(`${player}_score`, next);
+        document.getElementById(`${player}_score_val`).textContent = next;
+      }
+
+      // 初期値の同期
+      document.getElementById('p1_score_val').textContent =
+        localStorage.getItem('p1_score') || '0';
+      document.getElementById('p2_score_val').textContent =
+        localStorage.getItem('p2_score') || '0';
+    </script>
+  </body>
+</html>
