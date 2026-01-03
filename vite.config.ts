@@ -4,13 +4,15 @@ import { defineConfig } from 'vite';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-export default defineConfig({
-  build: {
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        view: resolve(__dirname, 'view/index.html'),
+export default defineConfig(() => {
+  return {
+    build: {
+      rollupOptions: {
+        input: {
+          main: resolve(__dirname, 'index.html'),
+          view: resolve(__dirname, 'view/index.html'),
+        },
       },
     },
-  },
+  };
 });

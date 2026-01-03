@@ -20,6 +20,7 @@
         grid-template-columns: 1fr 2fr 1fr 2fr 1fr;
         padding-top: 0.4rem;
         place-items: center;
+        justify-items: stretch;
         height: fit-content;
       }
 
@@ -31,27 +32,31 @@
         padding-left: 1rem;
         padding-right: 1rem;
         display: grid;
-        grid-template-columns: 10rem 1rem;
+        grid-template-columns: minmax(10rem, 1fr) 3rem;
         text-align: center;
         place-items: center;
         color: white;
       }
 
       .name {
-        font-size: 1rem;
+        font-size: 1.5rem;
         font-weight: bold;
       }
 
       .score {
-        font-size: 1.6rem;
+        font-size: 2.2rem;
         font-weight: bold;
       }
 
       .title-box {
         display: grid;
         font-weight: 700;
-        font-size: 1.28rem;
+        font-size: 1.8rem;
         color: oklch(57.659% 0.23172 28.763);
+      }
+
+      .invisible {
+        display: none;
       }
     </style>
     <title>obs-point-counter</title>
@@ -72,7 +77,7 @@
       </div>
       <div></div>
     </div>
-    <script type="module">
+    <script>
       // 表示を更新する関数
       function updateDisplay() {
         document.getElementById('p1_name').textContent =
